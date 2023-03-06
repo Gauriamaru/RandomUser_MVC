@@ -1,0 +1,46 @@
+﻿@model User_MVC.Models.HomeViewModel.RootObject
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>User Details</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.results)
+        {
+            <tr>
+                <td>
+                    @item.name.title
+                </td>
+
+                <td>
+                    @item.name.first
+                </td>
+                <td>
+                    @item.name.last
+                </td>
+                <td>
+                    @item.dob.age
+                </td>
+                <td>
+                    @item.location.coordinates.latitude
+                </td>
+                <td>
+                    @item.location.coordinates.longitude
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
