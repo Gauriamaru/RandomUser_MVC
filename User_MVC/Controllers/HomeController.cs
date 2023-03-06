@@ -26,7 +26,7 @@ namespace User_MVC.Controllers
                 try
                 {
 
-					throw new HttpRequestException();
+					
                     client.BaseAddress = new Uri("https://api.randomuser.me/?results=5");
                     var response = await client.GetAsync("https://api.randomuser.me/?results=5");
                     response.EnsureSuccessStatusCode();
