@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Reflection;
@@ -26,6 +26,7 @@ namespace User_MVC.Controllers
                 try
                 {
 
+					throw new HttpRequestException();
                     client.BaseAddress = new Uri("https://api.randomuser.me/?results=5");
                     var response = await client.GetAsync("https://api.randomuser.me/?results=5");
                     response.EnsureSuccessStatusCode();
@@ -36,12 +37,12 @@ namespace User_MVC.Controllers
                     return View(person);
                 }
 
-                catch (HttpRequestException )
+                catch (HttpRequestException httpRequestException)
                 {
-                  
-                    ViewBag.DetailError = "Data not accessible at this moment, please try again";
 
-                    return View("ErrorIndex");
+                    ErrorViewModel   err= new ErrorViewModel { RequestId = Activity.Current?.Id ?? httpRequestException.Message };
+                 
+                    return View("Error", err);
                 }
             }
         }
